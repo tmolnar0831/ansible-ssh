@@ -1,0 +1,27 @@
+---
+- name: Install the ssh server
+  package:
+    name: openssh-server
+    state: present
+  tags:
+    - sshd
+
+- name: Configure the ssh daemon
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - sshd
+  notify:
+    - Restart the ssh daemon
+
+- name: Enable and start the service
+  service:
+    name: sshd
+    state: started
+    enabled: yes
+  tags:
+    - sshd
