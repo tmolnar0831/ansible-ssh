@@ -12,6 +12,18 @@ HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
 
+{% if sshd_hostcertificates is defined %}
+{% for cert in sshd_hostcertificates %}
+HostCertificate /etc/ssh/{{ cert }}
+{% endfor %}
+{% endif %}
+
+{% if sshd_trustedusercakeys is defined %}
+{% for key in sshd_trustedusercakeys %}
+TrustedUserCAKeys /etc/ssh/{{ key }}
+{% endfor %}
+{% endif %}
+
 # Lifetime and size of ephemeral version 1 server key
 #KeyRegenerationInterval 1h
 #ServerKeyBits 1024
@@ -125,6 +137,15 @@ AcceptEnv XMODIFIERS
 
 # override default of no subsystems
 Subsystem	sftp	/usr/libexec/openssh/sftp-server
+
+{% if sshd_matches is defined %}
+{% for user in sshd_matches.keys() %}
+Match User {{ user }}
+{%  for k, v in sshd_matches[user].items() %}
+  {{ k }} {{ v }}
+{%  endfor %}
+{% endfor %}
+{% endif %}
 
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
