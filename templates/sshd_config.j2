@@ -16,13 +16,13 @@ HostKey /etc/ssh/ssh_host_ed25519_key
 {% for cert in sshd_hostcertificates %}
 HostCertificate /etc/ssh/{{ cert }}
 {% endfor %}
-{% endif %}
+{% endif -%}
 
 {% if sshd_trustedusercakeys is defined %}
 {% for key in sshd_trustedusercakeys %}
 TrustedUserCAKeys /etc/ssh/{{ key }}
 {% endfor %}
-{% endif %}
+{% endif -%}
 
 # Lifetime and size of ephemeral version 1 server key
 #KeyRegenerationInterval 1h
