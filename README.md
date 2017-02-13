@@ -22,6 +22,7 @@ sshd_trustedusercakeys:
 sshd_matches:
   tmolnar:
     PasswordAuthentication: 'yes'
+sshd_banner: /etc/issue.net
 ```
 
 ## Examples

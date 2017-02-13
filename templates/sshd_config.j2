@@ -126,8 +126,9 @@ UseDNS {{ sshd_usedns }}
 #ChrootDirectory none
 #VersionAddendum none
 
-# no default banner path
-#Banner none
+{% if sshd_banner is defined %}
+Banner {{ sshd_banner }}
+{% endif %}
 
 # Accept locale-related environment variables
 AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
