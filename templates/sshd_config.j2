@@ -3,9 +3,9 @@
 # If you want to change the port on a SELinux system, you have to tell
 # SELinux about this change.
 # semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
-Port {{ sshd_port | default(22) }}
+Port {{ sshd_port }}
 #AddressFamily any
-ListenAddress {{ sshd_listenaddress | default('0.0.0.0') }}
+ListenAddress {{ sshd_listenaddress }}
 
 # HostKeys for protocol version 2
 HostKey /etc/ssh/ssh_host_rsa_key
@@ -40,7 +40,7 @@ SyslogFacility AUTHPRIV
 # Authentication:
 
 #LoginGraceTime 2m
-PermitRootLogin {{ sshd_permitrootlogin | default('no') }}
+PermitRootLogin {{ sshd_permitrootlogin }}
 #StrictModes yes
 #MaxAuthTries 6
 #MaxSessions 10
@@ -69,7 +69,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 
 # To disable tunneled clear text passwords, change to no here!
 #PermitEmptyPasswords no
-PasswordAuthentication {{ sshd_passwordauthentication | default('no') }}
+PasswordAuthentication {{ sshd_passwordauthentication }}
 
 # Change to no to disable s/key passwords
 #ChallengeResponseAuthentication yes
@@ -83,7 +83,7 @@ ChallengeResponseAuthentication no
 #KerberosUseKuserok yes
 
 # GSSAPI options
-GSSAPIAuthentication {{ sshd_gssapiauthentication | default('no') }}
+GSSAPIAuthentication {{ sshd_gssapiauthentication }}
 GSSAPICleanupCredentials no
 #GSSAPIStrictAcceptorCheck yes
 #GSSAPIKeyExchange no
@@ -119,7 +119,7 @@ UsePrivilegeSeparation sandbox		# Default for new installations.
 #ClientAliveInterval 0
 #ClientAliveCountMax 3
 #ShowPatchLevel no
-UseDNS {{ sshd_usedns | default('no') }}
+UseDNS {{ sshd_usedns }}
 #PidFile /var/run/sshd.pid
 #MaxStartups 10:30:100
 #PermitTunnel no

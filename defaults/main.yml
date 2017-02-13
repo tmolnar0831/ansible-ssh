@@ -1,0 +1,7 @@
+---
+sshd_port: 22
+sshd_listenaddress: '0.0.0.0'
+sshd_permitrootlogin: 'no'
+sshd_passwordauthentication: 'yes'
+sshd_gssapiauthentication: 'no'
+sshd_usedns: 'no'
