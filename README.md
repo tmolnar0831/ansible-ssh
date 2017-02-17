@@ -1,4 +1,4 @@
-# Ansible role that Ansible role that manages the SSH
+# Ansible role that manages the SSH
 
 ## Requirements
 
