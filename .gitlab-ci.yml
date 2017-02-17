@@ -1,0 +1,22 @@
+---
+UbuntuSystemdTest:
+  image: 'docker:dind'
+  script:
+    - dockerd &
+    - sleep 3
+    - export ROLETOTEST=$(basename $(pwd))
+    - docker build --rm -t local/ubuntu-systemd -f tests/ubuntu-dockerfile/Dockerfile .
+    - docker run --privileged -d -ti -v `pwd`:/$ROLETOTEST -v /sys/fs/cgroup:/sys/fs/cgroup -v /tmp/$(mktemp -d):/run local/ubuntu-systemd /sbin/init
+    - DOCKER_CONTAINER_ID=$(docker ps | grep local/ubuntu-systemd | awk '{print $1}')
+    - docker exec -i $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test.sh"
+
+CentosSystemdTest:
+  image: 'docker:dind'
+  script:
+    - dockerd &
+    - sleep 3
+    - export ROLETOTEST=$(basename $(pwd))
+    - docker build --rm -t local/centos-systemd -f tests/centos-dockerfile/Dockerfile .
+    - docker run --privileged -d -ti -v `pwd`:/$ROLETOTEST -v /sys/fs/cgroup:/sys/fs/cgroup -v /tmp/$(mktemp -d):/run local/centos-systemd /usr/sbin/init
+    - DOCKER_CONTAINER_ID=$(docker ps | grep local/centos-systemd | awk '{print $1}')
+    - docker exec -i $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test.sh"
