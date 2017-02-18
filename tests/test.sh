@@ -14,4 +14,5 @@ ansible-playbook -i inventory test.yml
 # Idempotence
 ansible-playbook -i inventory test.yml | grep -q 'changed=0.*failed=0' || exit 1
 
-
+# Function tests
+systemctl status sshd.service | grep 'active (running)' || exit 1
