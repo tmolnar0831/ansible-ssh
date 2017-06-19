@@ -1,4 +1,4 @@
-# Ansible role that manages the SSH
+# Ansible role that manages the SSH daemon
 
 ## Requirements
 
@@ -23,6 +23,17 @@ sshd_matches:
   tmolnar:
     PasswordAuthentication: 'yes'
 sshd_banner: /etc/issue.net
+sshd_addressfamily: any
+sshd_hostkeys:
+  - ssh_host_rsa_key
+  - ssh_host_ecdsa_key
+  - ssh_host_ed25519_key
+sshd_logingracetime: '2m'
+sshd_strictmodes: 'yes'
+sshd_maxauthtries: 6
+sshd_maxsessions: 10
+sshd_rsaauthentication: 'yes'
+sshd_pubkeyauthentication: 'yes'
 ```
 
 ## Examples

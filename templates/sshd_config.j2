@@ -4,14 +4,17 @@
 # SELinux about this change.
 # semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
 Port {{ sshd_port }}
-#AddressFamily any
+AddressFamily {{ sshd_addressfamily }}
 ListenAddress {{ sshd_listenaddress }}
 
-# HostKeys for protocol version 2
-HostKey /etc/ssh/ssh_host_rsa_key
-HostKey /etc/ssh/ssh_host_ecdsa_key
-HostKey /etc/ssh/ssh_host_ed25519_key
+# HostKeys
+{% if sshd_hostkeys is defined %}
+{% for key in sshd_hostkeys %}
+HostKey /etc/ssh/{{ key }}
+{% endfor %}    
+{% endif %}
 
+# HostCertificates
 {% if sshd_hostcertificates is defined %}
 {% for cert in sshd_hostcertificates %}
 HostCertificate /etc/ssh/{{ cert }}
@@ -39,14 +42,14 @@ SyslogFacility AUTHPRIV
 
 # Authentication:
 
-#LoginGraceTime 2m
+LoginGraceTime {{ sshd_logingracetime }}
 PermitRootLogin {{ sshd_permitrootlogin }}
-#StrictModes yes
-#MaxAuthTries 6
-#MaxSessions 10
+StrictModes {{ sshd_strictmodes }}
+MaxAuthTries {{ sshd maxauthtries }}
+MaxSessions {{ sshd_maxsessions }}
 
-#RSAAuthentication yes
-#PubkeyAuthentication yes
+RSAAuthentication {{ sshd_rsaauthentication }}
+PubkeyAuthentication {{ sshd_pubkeyauthentication }}
 
 # The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
 # but this is overridden so installations will only check .ssh/authorized_keys
@@ -154,3 +157,4 @@ Match User {{ user }}
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+
