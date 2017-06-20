@@ -36,9 +36,8 @@ ServerKeyBits {{ sshd_serverkeybits }}
 
 # Logging
 # obsoletes QuietMode and FascistLogging
-#SyslogFacility AUTH
-SyslogFacility AUTHPRIV
-#LogLevel INFO
+SyslogFacility {{ sshd_syslogfacility }}
+LogLevel {{ sshd_loglevel }}
 
 # Authentication:
 
@@ -71,7 +70,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
-#PermitEmptyPasswords no
+PermitEmptyPasswords {{ sshd_permitemptypasswords }}
 PasswordAuthentication {{ sshd_passwordauthentication }}
 
 # Change to no to disable s/key passwords
