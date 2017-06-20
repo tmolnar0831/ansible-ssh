@@ -10,6 +10,8 @@ sshd_hostkeys:
   - ssh_host_rsa_key
   - ssh_host_ecdsa_key
   - ssh_host_ed25519_key
+sshd_keyregenerationinterval: '1h'
+sshd_serverkeybits: 1024
 sshd_logingracetime: '2m'
 sshd_strictmodes: 'yes'
 sshd_maxauthtries: '6'

@@ -28,8 +28,8 @@ TrustedUserCAKeys /etc/ssh/{{ key }}
 {% endif -%}
 
 # Lifetime and size of ephemeral version 1 server key
-#KeyRegenerationInterval 1h
-#ServerKeyBits 1024
+KeyRegenerationInterval {{ sshd_keyregenerationinterval }}
+ServerKeyBits {{ sshd_serverkeybits }}
 
 # Ciphers and keying
 #RekeyLimit default none
