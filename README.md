@@ -58,9 +58,9 @@ sshd_permitemptypasswords: 'no'
   roles:
     - ssh
   vars:
-    - sshd_passwordauthentication: no
-    - sshd_permitrootlogin: yes
-    - sshd_maxauthtries: 3
+    sshd_passwordauthentication: no
+    sshd_permitrootlogin: yes
+    sshd_maxauthtries: 3
 ```
 
 ## Dependencies
