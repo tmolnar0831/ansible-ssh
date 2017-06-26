@@ -19,6 +19,7 @@ Almost all default data has been set with respect to the Unix/Linux defaults.
 Without any configured variables the role installs a basic OpenSSH server.
 
 ```
+---
 sshd_port: 22
 sshd_listenaddress: '0.0.0.0'
 sshd_permitrootlogin: 'no'
@@ -54,6 +55,7 @@ sshd_permitemptypasswords: 'no'
 ## Examples
 
 ```
+---
 - hosts: all 
   roles:
     - ssh
@@ -61,6 +63,8 @@ sshd_permitemptypasswords: 'no'
     sshd_passwordauthentication: no
     sshd_permitrootlogin: yes
     sshd_maxauthtries: 3
+    sshd_hostkeys:
+      - ssh_host_ed25519_key
 ```
 
 ## Dependencies
