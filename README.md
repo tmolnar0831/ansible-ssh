@@ -1,9 +1,9 @@
 
 # Ansible role that manages the SSH daemon
 
-This role can configure the OpenSSH daemon extensively.
+This role installs and configures the OpenSSH daemon extensively.
 
-The base template for the `sshd_config` file is from RHEL, but it has
+The base template for the `/etc/ssh/sshd_config` file is from RHEL, but it has
 been tested with **>= Ubuntu 14.04** and **Debian Jessie**.
 
 ## Requirements
@@ -14,9 +14,9 @@ This module requires Ansible 2.x version.
 
 About the default values please consult the `defaults` directory.
 
-All default data has been set with respect to the Unix/Linux defaults.
+Almost all default data has been set with respect to the Unix/Linux defaults.
 
-Without configured variables the role installs a basic OpenSSH server.
+Without any configured variables the role installs a basic OpenSSH server.
 
 ```
 sshd_port: 22
@@ -57,6 +57,10 @@ sshd_permitemptypasswords: 'no'
 - hosts: all 
   roles:
     - ssh
+  vars:
+    - sshd_passwordauthentication: no
+    - sshd_permitrootlogin: yes
+    - sshd_maxauthtries: 3
 ```
 
 ## Dependencies
