@@ -9,6 +9,7 @@ UbuntuSystemdTest:
     - docker run --privileged -d -ti -v `pwd`:/$ROLETOTEST -v /sys/fs/cgroup:/sys/fs/cgroup -v /tmp/$(mktemp -d):/run local/ubuntu-systemd /sbin/init
     - DOCKER_CONTAINER_ID=$(docker ps | grep local/ubuntu-systemd | awk '{print $1}')
     - docker exec -i $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test.sh"
+    - docker exec -i $DOCKER_CONTAINER_ID /bin/sh -c "cat /etc/ssh/sshd_config"
 
 CentosSystemdTest:
   image: 'docker:dind'
@@ -20,3 +21,4 @@ CentosSystemdTest:
     - docker run --privileged -d -ti -v `pwd`:/$ROLETOTEST -v /sys/fs/cgroup:/sys/fs/cgroup -v /tmp/$(mktemp -d):/run local/centos-systemd /usr/sbin/init
     - DOCKER_CONTAINER_ID=$(docker ps | grep local/centos-systemd | awk '{print $1}')
     - docker exec -i $DOCKER_CONTAINER_ID /bin/sh -c "/$ROLETOTEST/tests/test.sh"
+    - docker exec -i $DOCKER_CONTAINER_ID /bin/sh -c "cat /etc/ssh/sshd_config"
