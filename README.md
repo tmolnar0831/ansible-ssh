@@ -49,6 +49,10 @@ sshd_maxsessions: '10'
 sshd_rsaauthentication: 'yes'
 sshd_pubkeyauthentication: 'yes'
 sshd_permitemptypasswords: 'no'
+sshd_secure_ciphers:
+  - aes256-ctr
+  - aes192-ctr
+  - aes128-ctr
 ```
 
 ## Examples
