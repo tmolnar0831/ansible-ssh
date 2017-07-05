@@ -30,9 +30,14 @@ TrustedUserCAKeys /etc/ssh/{{ key }}
 # Lifetime and size of ephemeral version 1 server key
 KeyRegenerationInterval {{ sshd_keyregenerationinterval }}
 ServerKeyBits {{ sshd_serverkeybits }}
-
+  
 # Ciphers and keying
 #RekeyLimit default none
+
+{% if sshd_secure_ciphers is defined %}
+# Secure Ciphers
+Ciphers {{ sshd_secure_ciphers | join(',') }}
+{% endif %}
 
 # Logging
 # obsoletes QuietMode and FascistLogging
