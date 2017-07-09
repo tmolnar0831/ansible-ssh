@@ -13,6 +13,7 @@
     owner: root
     group: root
     mode: 0600
+    backup: yes
   tags:
     - sshd
   notify:
