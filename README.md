@@ -1,9 +1,11 @@
-# Ansible role that manages the SSH daemon
+# Ansible role that manages the SSH server
 
 This role installs and configures the OpenSSH daemon on *NIX machines.
 
+[![pipeline status](https://gitlab.com/stiron/ansible-ssh/badges/master/pipeline.svg)](https://gitlab.com/stiron/ansible-ssh/commits/master)
+
 The base template for the `/etc/ssh/sshd_config` file is from RHEL7, but it has
-been tested with **>= Ubuntu 14.04** and **Debian Jessie** as well.
+been tested with **>= Ubuntu 16.04** and **Debian Jessie** as well.
 
 ## Requirements
 
