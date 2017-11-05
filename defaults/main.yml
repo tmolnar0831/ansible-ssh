@@ -25,3 +25,4 @@ sshd_secure_ciphers:
   - aes256-ctr
   - aes192-ctr
   - aes128-ctr
+sshd_authorizedkeysfile: .ssh/authorized_keys
