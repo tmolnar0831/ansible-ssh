@@ -3,5 +3,3 @@
   service:
     name: sshd
     state: restarted
-  tags:
-    - sshd

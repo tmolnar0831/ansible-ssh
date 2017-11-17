@@ -3,8 +3,6 @@
   package:
     name: openssh-server
     state: present
-  tags:
-    - sshd
 
 - name: Configure the ssh server
   template:
@@ -14,8 +12,6 @@
     group: root
     mode: 0600
     backup: yes
-  tags:
-    - sshd
   notify:
     - Restart the ssh daemon
 
@@ -24,5 +20,3 @@
     name: sshd
     state: started
     enabled: yes
-  tags:
-    - sshd
