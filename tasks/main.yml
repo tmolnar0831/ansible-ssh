@@ -12,6 +12,7 @@
     group: root
     mode: 0600
     backup: yes
+    validate: /usr/sbin/sshd -T -f %s
   notify:
     - Restart the ssh daemon
 
